@@ -16,5 +16,10 @@ public class HomeController {
 
     }
 
+    @GetMapping("/add")
+    public String viewAdd() {
+        return "add";
+    }
+
 
 }
