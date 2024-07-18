@@ -12,13 +12,16 @@ public class HomeController {
         return "index";
     }
 
-    public void nasd() {
+    @GetMapping("/register")
+    public String viewRegister() {
 
+        return "register";
     }
 
-    @GetMapping("/add")
-    public String viewAdd() {
-        return "add";
+    @GetMapping("/login")
+    public String viewLogin() {
+
+        return "login";
     }
 
 

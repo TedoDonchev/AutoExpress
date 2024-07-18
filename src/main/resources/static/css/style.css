@@ -21,8 +21,15 @@ main {
 }
 
 .content {
+    min-height: 100%;
+    min-width: 88%;
     position: absolute;
     top: 5%;
     left: 12%;
     z-index: 1
+}
+
+.content-inner {
+    align-items: center;
+
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commons/header::head}">
+<body>
+    <header th:replace="~{commons/header::div}"></header>
+
+    <main>
+        <nav th:replace="~{commons/navbar::nav}"></nav>
+
+        <form>
+            <div class="content">
+                <div class="content-inner">
+                    <div class="login-input">
+                        <h1>Register</h1>
+                    </div>
+                    <div class="login-input">
+                        <div>
+                            <label>Username</label>
+                        </div>
+                        <input type="text">
+                    </div>
+                    <div class="login-input">
+                        <div>
+                            <label>Email</label>
+                        </div>
+                        <input type="text">
+                    </div>
+                    <div class="login-input">
+                        <div>
+                            <label>Password</label>
+                        </div>
+                        <input type="text">
+                    </div>
+                    <div class="login-input">
+                        <div>
+                            <label>Confirm Password</label>
+                        </div>
+                        <input type="text">
+                    </div>
+                    <div class="login-input">
+                        <button>Register</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+
+    </main>
+</body>
+</html>
