@@ -12,17 +12,7 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/register")
-    public String viewRegister() {
 
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String viewLogin() {
-
-        return "login";
-    }
 
 
 }

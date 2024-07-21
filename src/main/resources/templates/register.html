@@ -8,7 +8,11 @@
     <main>
         <nav th:replace="~{commons/navbar::nav}"></nav>
 
-        <form>
+        <form
+            th:method="POST"
+            th:action="@{/register}"
+            th:object="${registerData}">
+
             <div class="content">
                 <div class="content-inner">
                     <div class="login-input">
@@ -18,25 +22,25 @@
                         <div>
                             <label>Username</label>
                         </div>
-                        <input type="text">
+                        <input type="text" name="username" th:field="*{username}">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Email</label>
                         </div>
-                        <input type="text">
+                        <input type="text" name="email" th:field="*{email}">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Password</label>
                         </div>
-                        <input type="text">
+                        <input type="password" name="password" th:field="*{password}">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Confirm Password</label>
                         </div>
-                        <input type="text">
+                        <input type="password" name="confirmPassword">
                     </div>
                     <div class="login-input">
                         <button>Register</button>
