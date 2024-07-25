@@ -1,13 +1,16 @@
-package com.example.AutoExpress.services.session;
+package com.example.AutoExpress.security;
 
-import com.example.AutoExpress.entities.User;
+import com.example.AutoExpress.entities.UserEntity;
 import com.example.AutoExpress.repositories.UserRepository;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
@@ -26,13 +29,23 @@ public class AppUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username %s not found!", username)));
     }
 
-    private UserDetails mapToUserDetails(User user) {
+    private UserDetails mapToUserDetails(UserEntity userEntity) {
 
         return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
-                .password(user.getPassword())
-                .authorities(List.of())
+                .withUsername(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .authorities(grantedAuthorities(userEntity))
                 .build();
+
+    }
+
+    private List<GrantedAuthority> grantedAuthorities(UserEntity userEntity) {
+
+        return userEntity.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().name()))
+                .collect(Collectors.toUnmodifiableList());
+
+
 
     }
 

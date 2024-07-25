@@ -1,18 +1,31 @@
-package com.example.AutoExpress.Config;
+package com.example.AutoExpress.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+
+    private final CustomUserDetailsService userDetailsService;
+
+    @Autowired
+    public WebSecurityConfig(CustomUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -22,7 +35,7 @@ public class WebSecurityConfig {
                     authorizeRequest -> {
                         authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/", "/register", "/login").permitAll()
+                                .requestMatchers("/", "/auth/register", "/login").permitAll()
                                 .anyRequest().authenticated();
 
                     }
@@ -44,17 +57,27 @@ public class WebSecurityConfig {
 
             );
 
-
-
-
-
-
-
-
         return http.build();
     }
 
+    @Bean
+    public UserDetailsService users() {
+        UserDetails admin = User.builder()
+                                .username("admin")
+                                .password("admin")
+                                .roles("ADMIN")
+                                .build();
 
 
+        return new InMemoryUserDetailsManager(admin);
+    }
+
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+
+        return authenticationConfiguration.getAuthenticationManager();
+
+    }
 
 }

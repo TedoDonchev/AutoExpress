@@ -1,17 +1,16 @@
 package com.example.AutoExpress.repositories;
 
-import com.example.AutoExpress.entities.User;
+import com.example.AutoExpress.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
 
-    Optional<User> findByUsername(String username);
+    Optional<UserEntity> findByUsername(String username);
 
     boolean existsByUsernameOrEmail(String username, String email);
 }

@@ -2,9 +2,11 @@ package com.example.AutoExpress.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity{
+public class UserEntity extends BaseEntity{
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -15,11 +17,11 @@ public class User extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Role> roles;
 
 
-    public User() {
+    public UserEntity() {
     }
 
     public String getUsername() {
@@ -46,12 +48,12 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
 
