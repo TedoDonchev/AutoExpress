@@ -11,7 +11,8 @@
     <form
         th:method="POST"
         th:action="@{/login}"
-        th:object="${loginData}">
+        >
+<!--        th:object="${loginData}"-->
 
         <div class="content">
             <div class="content-inner">
@@ -22,14 +23,16 @@
                     <div>
                         <label>Username</label>
                     </div>
-                    <input type="text" name="username" th:field="*{username}">
+                    <input type="text" name="username" >
+<!--                    th:field="*{username}"-->
                 </div>
 
                 <div class="login-input">
                     <div>
                         <label>Password</label>
                     </div>
-                    <input type="password" name="password" th:field="*{password}">
+                    <input type="password" name="password">
+<!--                    th:field="*{password}"-->
                 </div>
 
                 <div class="login-input">

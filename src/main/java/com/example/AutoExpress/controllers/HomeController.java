@@ -9,10 +9,15 @@ public class HomeController {
 
     @GetMapping("/")
     public String viewHome() {
+
         return "index";
     }
 
+    @GetMapping("/about")
+    public String viewAbout() {
 
+        return "about";
+    }
 
 
 }

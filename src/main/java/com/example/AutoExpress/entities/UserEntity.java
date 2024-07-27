@@ -3,6 +3,7 @@ package com.example.AutoExpress.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -18,7 +19,7 @@ public class UserEntity extends BaseEntity{
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Role> roles;
+    private Set<Role> roles;
 
 
     public UserEntity() {
@@ -48,11 +49,11 @@ public class UserEntity extends BaseEntity{
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 }

@@ -17,25 +17,21 @@ import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfig {
-
-    private final CustomUserDetailsService userDetailsService;
-
-    @Autowired
-    public WebSecurityConfig(CustomUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        //http.csrf(csrf -> csrf.disable());
+
         http
+            .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.disable())
+            .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
             .authorizeHttpRequests(
                     authorizeRequest -> {
                         authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/", "/auth/register", "/login").permitAll()
+                                .requestMatchers("/", "/register", "/login").permitAll()
                                 .anyRequest().authenticated();
 
                     }
@@ -44,7 +40,7 @@ public class WebSecurityConfig {
                     formLogin.loginPage("/login");
                     formLogin.usernameParameter("username");
                     formLogin.passwordParameter("password");
-                    formLogin.defaultSuccessUrl("/");
+                    formLogin.defaultSuccessUrl("/", true);
                     formLogin.failureForwardUrl("/login");
 
                 }
@@ -60,24 +56,11 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService users() {
-        UserDetails admin = User.builder()
-                                .username("admin")
-                                .password("admin")
-                                .roles("ADMIN")
-                                .build();
-
-
-        return new InMemoryUserDetailsManager(admin);
-    }
-
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
-
-        return authenticationConfiguration.getAuthenticationManager();
-
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+//
+//        return authenticationConfiguration.getAuthenticationManager();
+//
+//    }
 
 }
