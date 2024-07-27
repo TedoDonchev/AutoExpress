@@ -21,6 +21,8 @@ public class UserEntity extends BaseEntity{
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "createdBy")
+    private Set<Discussion> createdDiscussions;
 
     public UserEntity() {
     }
@@ -55,6 +57,14 @@ public class UserEntity extends BaseEntity{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Discussion> getCreatedDiscussions() {
+        return createdDiscussions;
+    }
+
+    public void setCreatedDiscussions(Set<Discussion> createdDiscussions) {
+        this.createdDiscussions = createdDiscussions;
     }
 }
 
