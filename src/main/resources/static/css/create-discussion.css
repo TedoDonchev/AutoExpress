@@ -1,0 +1,13 @@
+.create-discussion {
+
+    align-items: flex-start;
+
+}
+
+
+#description, #title {
+    width: 80%;
+
+
+}
+

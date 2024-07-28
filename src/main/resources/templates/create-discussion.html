@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{commons/header::head}"></head>
+
+<body>
+    <header th:replace="~{commons/header::div}"></header>
+
+    <main>
+        <nav th:replace="~{commons/navbar::nav}"></nav>
+
+        <form
+                th:method="POST"
+                th:action="@{/discussion/create}"
+                th:object="${discussionData}"
+        >
+
+            <div class="content">
+                <div class="create-discussion">
+                    <div class="discussion-input">
+                        <h1>Create Discussion</h1>
+                    </div>
+                    <div class="discussion-input">
+                        <div>
+                            <label>Title</label>
+                        </div>
+                        <input type="text" name="title" th:field="*{title}">
+                    </div>
+                    <div class="discussion-input">
+                        <div>
+                            <label>Topic</label>
+                        </div>
+                        <select name="topic">
+                            <option value="Select Topic">Select Topic</option>
+                            <option th:each="topicEnum : ${T(com.example.AutoExpress.entities.TopicEnum).values()}"
+                                    th:value="${topicEnum}" th:text="${topicEnum}"></option>
+                        </select>
+
+                    </div>
+                    <div class="discussion-input">
+                        <div>
+                            <label>Description</label>
+                        </div>
+                        <textarea type="text" name="description" th:field="*{description}"></textarea>
+                    </div>
+
+
+                    <div class="discussion-input">
+                        <button type="submit">Publish</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </main>
+
+</body>
+</html>

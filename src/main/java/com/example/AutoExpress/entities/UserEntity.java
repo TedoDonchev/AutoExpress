@@ -2,6 +2,8 @@ package com.example.AutoExpress.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +26,12 @@ public class UserEntity extends BaseEntity{
     @OneToMany(mappedBy = "createdBy")
     private Set<Discussion> createdDiscussions;
 
+    @OneToMany(mappedBy = "createdBy")
+    private List<Comment> comments;
+
     public UserEntity() {
+        this.createdDiscussions = new HashSet<>();
+        this.comments = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -65,6 +72,14 @@ public class UserEntity extends BaseEntity{
 
     public void setCreatedDiscussions(Set<Discussion> createdDiscussions) {
         this.createdDiscussions = createdDiscussions;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
 

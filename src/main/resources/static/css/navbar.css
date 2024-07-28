@@ -4,6 +4,16 @@
     top: 5%;
     min-height: 100%;
     width: 10%;
+
+    display: grid;
+    grid-template-rows: 30% 30% 30%
+}
+
+.navbar-section {
+
+    margin: 0 auto;
+    margin-top: 7%;
+
 }
 
 

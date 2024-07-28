@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{commons/header::head}">
+<head th:replace="~{commons/header::head}"></head>
 <body>
-<header th:replace="~{commons/header::div}"></header>
 
-<main>
-    <nav th:replace="~{commons/navbar::nav}"></nav>
+    <header th:replace="~{commons/header::div}"></header>
 
-    <form
-        th:method="POST"
-        th:action="@{/login}"
-        >
-<!--        th:object="${loginData}"-->
+    <main>
+        <nav th:replace="~{commons/navbar::nav}"></nav>
 
-        <div class="content">
-            <div class="content-inner">
-                <div class="login-input">
-                    <h1>Login</h1>
-                </div>
-                <div class="login-input">
-                    <div>
-                        <label>Username</label>
+        <form
+            th:method="POST"
+            th:action="@{/login}"
+            >
+    <!--        th:object="${loginData}"-->
+
+            <div class="content">
+                <div class="content-inner">
+                    <div class="login-input">
+                        <h1>Login</h1>
                     </div>
-                    <input type="text" name="username" >
-<!--                    th:field="*{username}"-->
-                </div>
-
-                <div class="login-input">
-                    <div>
-                        <label>Password</label>
+                    <div class="login-input">
+                        <div>
+                            <label>Username</label>
+                        </div>
+                        <input type="text" name="username" >
+    <!--                    th:field="*{username}"-->
                     </div>
-                    <input type="password" name="password">
-<!--                    th:field="*{password}"-->
+
+                    <div class="login-input">
+                        <div>
+                            <label>Password</label>
+                        </div>
+                        <input type="password" name="password">
+    <!--                    th:field="*{password}"-->
+                    </div>
+
+                    <div class="login-input">
+                        <button type="submit">Login</button>
+                    </div>
                 </div>
 
-                <div class="login-input">
-                    <button type="submit">Login</button>
-                </div>
             </div>
-
-        </div>
-    </form>
+        </form>
 
 
-</main>
+    </main>
 </body>
 </html>

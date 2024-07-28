@@ -2,6 +2,7 @@ package com.example.AutoExpress.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,13 @@ public class Topic extends BaseEntity {
     private Set<Discussion> discussions;
 
     public Topic() {
+        this.discussions = new HashSet<>();
     }
+
+    public Topic(TopicEnum name) {
+        this.name = name;
+    }
+
 
     public TopicEnum getName() {
         return name;

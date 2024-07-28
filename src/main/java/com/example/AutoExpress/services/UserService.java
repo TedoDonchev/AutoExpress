@@ -49,6 +49,8 @@ public class UserService {
 //        userRepository.save(mapped);
 //
 //        return true;
+
+
         UserEntity user = this.modelMapper.map(data, UserEntity.class);
 
         user.setPassword(passwordEncoder.encode(data.getPassword()));

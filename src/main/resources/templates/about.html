@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{commons/header::head}"></head>
+
 <body>
-    <h1>Authenticated</h1>
+    <header th:replace="~{commons/header::div}"></header>
+    <main>
+        <nav th:replace="~{commons/navbar::nav}"></nav>
+
+        <div class="content">
+            <h1>Auth</h1>
+
+        </div>
+
+
+    </main>
 </body>
 </html>

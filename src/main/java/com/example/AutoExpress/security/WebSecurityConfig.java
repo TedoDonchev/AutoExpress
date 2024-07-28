@@ -31,7 +31,7 @@ public class WebSecurityConfig {
                     authorizeRequest -> {
                         authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/", "/register", "/login").permitAll()
+                                .requestMatchers("/", "/register", "/login", "/discussion/create").permitAll()
                                 .anyRequest().authenticated();
 
                     }
@@ -42,6 +42,7 @@ public class WebSecurityConfig {
                     formLogin.passwordParameter("password");
                     formLogin.defaultSuccessUrl("/", true);
                     formLogin.failureForwardUrl("/login");
+
 
                 }
             )

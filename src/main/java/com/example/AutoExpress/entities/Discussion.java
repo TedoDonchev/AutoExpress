@@ -1,11 +1,10 @@
 package com.example.AutoExpress.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "discussions")
@@ -22,8 +21,12 @@ public class Discussion extends BaseEntity {
     @ManyToOne
     private Topic topic;
 
+    @OneToMany(mappedBy = "discussion")
+    private List<Comment> comments;
+
 
     public Discussion() {
+        this.comments = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -64,5 +67,13 @@ public class Discussion extends BaseEntity {
 
     public void setTopic(Topic topic) {
         this.topic = topic;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
