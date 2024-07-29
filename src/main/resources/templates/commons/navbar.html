@@ -8,7 +8,7 @@
 <body>
     <nav class="navbar">
         <div class="navbar-upper navbar-section">
-            <div>
+            <div th:if="${@authService.isAuthenticated()}">
                 <a th:href="@{/discussion/create}"><img th:src="@{images/plus.jpg}" width="10%" height="10%">Create Discussion</a>
             </div>
             <div>Upper 2</div>

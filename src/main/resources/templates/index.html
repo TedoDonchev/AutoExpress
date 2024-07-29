@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{commons/header::head}">
 <!--    <meta charset="UTF-8">-->
 <!--    <title>Title</title>-->
@@ -13,61 +13,20 @@
     <main>
         <nav th:replace="~{commons/navbar::nav}"></nav>
         <div class="content">
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p>
-            <p>this is div</p><p>this is div</p><p>this is div</p>
+
+            <div th:if="${authService.isAuthenticated()}" class="content-inner">
+
+                    <div th:each="d : ${discussions}">
+
+                        <div th:text="*{d.title}"></div>
+                        <div th:text="*{d.topic.name}"></div>
+                        <div th:text="*{d.description}"></div>
+                        <div th:text="*{d.createdOn}"></div>
+                        <div th:text="*{d.createdBy.username}"></div>
+                        <div></div>
+                    </div>
+
+            </div>
 
         </div>
 

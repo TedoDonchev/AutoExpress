@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +34,11 @@ public class DiscussionService {
     }
 
 
+    public List<Discussion> getAllDiscussions() {
+        return discussionRepository.findAll();
+    }
+
+
     public boolean createDiscussion(DiscussionDTO data) {
 
        Optional<Discussion> optDiscussion = discussionRepository.getByTitle(data.getTitle());
@@ -40,7 +46,6 @@ public class DiscussionService {
        if (optDiscussion.isPresent()) {
            return false;
        }
-
 
 
        Discussion discussion = modelMapper.map(data, Discussion.class);
@@ -52,7 +57,6 @@ public class DiscussionService {
        discussion.setTopic(topic);
        discussion.setCreatedBy(createdBy);
        discussion.setCreatedOn(LocalDate.now());
-
 
        discussionRepository.save(discussion);
 

@@ -5,14 +5,18 @@ import com.example.AutoExpress.entities.RoleEnum;
 import com.example.AutoExpress.entities.Topic;
 import com.example.AutoExpress.entities.TopicEnum;
 import com.example.AutoExpress.repositories.TopicRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(1)
 public class InitTopics implements CommandLineRunner {
 
     private final TopicRepository topicRepository;
 
+    @Autowired
     public InitTopics(TopicRepository topicRepository) {
         this.topicRepository = topicRepository;
     }

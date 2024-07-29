@@ -11,8 +11,13 @@ public class Role extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private RoleEnum name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private List<UserEntity> userEntities;
+
+    public void addUser(UserEntity user) {
+        this.userEntities.add(user);
+    }
+
 
     public Role() {
     }

@@ -31,7 +31,7 @@ public class WebSecurityConfig {
                     authorizeRequest -> {
                         authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/", "/register", "/login", "/discussion/create").permitAll()
+                                .requestMatchers("/", "/register", "/login").permitAll()
                                 .anyRequest().authenticated();
 
                     }

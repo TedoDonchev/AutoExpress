@@ -34,7 +34,8 @@ public class AuthService {
 
     public boolean isAuthenticated() {
         // Spring security sets default user with Role ANONYMOUS when no user is authenticated.
-        return !hasRole("ANONYMOUS");
+        // hasRole("ANONYMOUS")
+        return hasRole("ADMIN") || hasRole("MEMBER");
     }
     public Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();

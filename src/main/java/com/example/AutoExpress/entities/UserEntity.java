@@ -20,7 +20,7 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "createdBy")
@@ -30,9 +30,15 @@ public class UserEntity extends BaseEntity{
     private List<Comment> comments;
 
     public UserEntity() {
+        this.roles = new HashSet<>();
         this.createdDiscussions = new HashSet<>();
         this.comments = new ArrayList<>();
     }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
 
     public String getUsername() {
         return username;

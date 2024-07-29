@@ -23,9 +23,9 @@
 
         <div class="topnav-right">
             <div><a th:href="@{/about}">About</a></div>
-            <div><a th:href="@{/login}">Login</a></div>
-            <div><a th:href="@{/register}">Register</a></div>
-            <div><a th:href="@{/logout}">Logout</a></div>
+            <div><a th:if="${!@authService.isAuthenticated()}" th:href="@{/login}">Login</a></div>
+            <div><a th:if="${!@authService.isAuthenticated()}" th:href="@{/register}">Register</a></div>
+            <div><a th:if="${@authService.isAuthenticated()}" th:href="@{/logout}">Logout</a></div>
         </div>
 
 
