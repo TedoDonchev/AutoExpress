@@ -30,6 +30,10 @@ public class Discussion extends BaseEntity {
         this.comments = new ArrayList<>();
     }
 
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+    }
+
     public String getTitle() {
         return title;
     }

@@ -11,11 +11,35 @@
 
         <div class="content">
             <div class="content-inner">
-                <h1 th:text="*{discussion.title}">Title</h1>
-                <div th:text="*{discussion.topic.name}">Topic</div>
-                <div th:text="*{discussion.description}">Descr</div>
-                <div th:text="*{discussion.CreatedOn}">Date</div>
-                <div th:text="*{discussion.createdBy.username}">Author</div>
+
+                <div class="discussion-original">
+                    <h1 th:text="*{discussion.title}">Title</h1>
+                    <div th:text="*{discussion.topic.name}">Topic</div>
+                    <div th:text="*{discussion.description}">Descr</div>
+                    <div th:text="*{discussion.CreatedOn}">Date</div>
+                    <div th:text="*{discussion.createdBy.username}">Author</div>
+                </div>
+
+                <div class="discussion-comments">
+                    <h3>Comments</h3>
+                    <div class="comment" th:each="c : ${comments}">
+                        <div th:text="*{c.description}"></div>
+                        <div th:text="*{c.reputation}"></div>
+                        <div th:text="*{c.createdOn}"></div>
+                        <div th:text="*{c.createdBy.username}"></div>
+                    </div>
+                </div>
+
+                <form th:method="POST"
+                      th:action="@{/comments/create/{discussionTitle}(discussionTitle=${discussion.title})}"
+                                    >
+                    <div class="add-comment">
+                        <h3>Add Comment</h3>
+                        <textarea type="text" name="description"></textarea>
+                        <button type="submit">Comment</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </main>

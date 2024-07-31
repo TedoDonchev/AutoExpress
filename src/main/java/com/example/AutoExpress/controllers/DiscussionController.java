@@ -1,8 +1,10 @@
 package com.example.AutoExpress.controllers;
 
 import com.example.AutoExpress.dto.DiscussionDTO;
+import com.example.AutoExpress.entities.Comment;
 import com.example.AutoExpress.entities.Discussion;
 import com.example.AutoExpress.entities.Topic;
+import com.example.AutoExpress.services.CommentService;
 import com.example.AutoExpress.services.DiscussionService;
 import com.example.AutoExpress.services.TopicService;
 import jakarta.validation.Valid;
@@ -18,10 +20,12 @@ public class DiscussionController {
 
     private final TopicService topicService;
 
+    private final CommentService commentService;
     private final DiscussionService discussionService;
 
-    public DiscussionController(TopicService topicService, DiscussionService discussionService) {
+    public DiscussionController(TopicService topicService, CommentService commentService, DiscussionService discussionService) {
         this.topicService = topicService;
+        this.commentService = commentService;
         this.discussionService = discussionService;
     }
 
@@ -56,6 +60,9 @@ public class DiscussionController {
 
         Discussion discussion = discussionService.findByTitle(title);
 
+        List<Comment> comments = commentService.getAllByDiscussion(discussion.getId());
+
+        model.addAttribute("comments", comments);
         model.addAttribute("discussion", discussion);
 
         return "discussion";
