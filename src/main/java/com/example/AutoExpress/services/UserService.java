@@ -23,7 +23,6 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final AuthService authService;
@@ -62,7 +61,9 @@ public class UserService {
         return !userRepository.existsByEmail(email);
     }
 
-
+    public UserEntity getUserByUserName(String userName) {
+        return userRepository.findByUsername(userName).get();
+    }
 
 
 }

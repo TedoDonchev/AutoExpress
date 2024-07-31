@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{commons/header::head}">
 <!--    <meta charset="UTF-8">-->
 <!--    <title>Title</title>-->
@@ -14,15 +14,17 @@
         <nav th:replace="~{commons/navbar::nav}"></nav>
         <div class="content">
 
-            <div th:if="${authService.isAuthenticated()}" class="content-inner">
+            <div th:if="${@authService.isAuthenticated()}" class="content-inner">
+                    <h2>Most recent Discussions</h2>
+                    <div class="discussion" th:each="d : ${discussions}">
 
-                    <div th:each="d : ${discussions}">
+                        <a th:href="@{/discussion/{title}(title=${d.title})}"><div th:text="*{d.title}">Title</div></a>
+                        <a><div th:text="*{d.topic.name}">Topic</div></a>
+                        <div class="additional_data">
+                            <a><div th:text="*{d.createdOn}">Created On</div></a>
+                            <a th:href="@{/users/{username}(username=${d.createdBy.username})}"><div th:text="*{d.createdBy.username}">Author</div></a>
+                        </div>
 
-                        <div th:text="*{d.title}"></div>
-                        <div th:text="*{d.topic.name}"></div>
-                        <div th:text="*{d.description}"></div>
-                        <div th:text="*{d.createdOn}"></div>
-                        <div th:text="*{d.createdBy.username}"></div>
                         <div></div>
                     </div>
 

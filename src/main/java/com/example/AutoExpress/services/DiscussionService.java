@@ -8,6 +8,7 @@ import com.example.AutoExpress.entities.UserEntity;
 import com.example.AutoExpress.repositories.DiscussionRepository;
 import com.example.AutoExpress.repositories.TopicRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
@@ -31,12 +32,17 @@ public class DiscussionService {
         this.topicRepository = topicRepository;
         this.modelMapper = modelMapper;
         this.authService = authService;
-    }
 
+    }
 
     public List<Discussion> getAllDiscussions() {
-        return discussionRepository.findAll();
+        return discussionRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
+
+    public Discussion findByTitle(String title) {
+        return discussionRepository.findByTitle(title);
+    }
+
 
 
     public boolean createDiscussion(DiscussionDTO data) {

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commons/header::head}">
+<body>
+<header th:replace="~{commons/header::div}"></header>
+
+<main>
+    <nav th:replace="~{commons/navbar::nav}"></nav>
+
+
+    <div class="content">
+        <div class="content-inner">
+            <h1 th:text="*{user.username}">Title</h1>
+            <div th:text="*{user.email}">Topic</div>
+<!--            add discussion list-->
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

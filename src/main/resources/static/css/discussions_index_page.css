@@ -1,0 +1,13 @@
+.discussion {
+
+    margin: 2%;
+
+    display:grid;
+    grid-template-rows: 30% 30% 30%;
+
+}
+
+.additional_data {
+    display: grid;
+    grid-template-columns: 20% 20%;
+}

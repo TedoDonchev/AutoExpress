@@ -26,8 +26,7 @@ public class HomeController {
 
         List<Discussion> discussions = discussionService.getAllDiscussions();
 
-
-        model.addAttribute("authService", authService);
+        //model.addAttribute("authService", authService);
         model.addAttribute("discussions", discussions);
 
 
