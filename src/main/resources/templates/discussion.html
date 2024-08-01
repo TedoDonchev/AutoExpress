@@ -27,7 +27,7 @@
                         <div th:text="*{c.reputation}"></div>
                         <div th:text="*{c.createdOn}"></div>
                         <div th:text="*{c.createdBy.username}"></div>
-                        <div th:if="${c.createdBy.id == @authService.getUser().getId()}">
+                        <div th:if="${c.createdBy.id == @authService.getUser().getId()} or ${@authService.isAdmin()}">
                             <form th:method="POST"
                                 th:action="@{/comments/delete/{id}(id=${c.Id})}">
                                 <button type="submit">Delete</button>

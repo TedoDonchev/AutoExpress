@@ -4,6 +4,7 @@ import com.example.AutoExpress.dto.CommentDTO;
 
 import com.example.AutoExpress.entities.Comment;
 import com.example.AutoExpress.entities.Discussion;
+import com.example.AutoExpress.services.AuthService;
 import com.example.AutoExpress.services.CommentService;
 import com.example.AutoExpress.services.DiscussionService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,10 +20,12 @@ public class CommentsController {
 
     private final CommentService commentService;
     private final DiscussionService discussionService;
+    private final AuthService authService;
 
-    public CommentsController(CommentService commentService, DiscussionService discussionService) {
+    public CommentsController(CommentService commentService, DiscussionService discussionService, AuthService authService) {
         this.commentService = commentService;
         this.discussionService = discussionService;
+        this.authService = authService;
     }
 
     @PostMapping("/create/{discussionTitle}")
@@ -41,8 +44,10 @@ public class CommentsController {
 
         Comment c = commentService.getById(id);
         String discussionTitle = c.getDiscussion().getTitle();
-        commentService.deleteCommentById(id);
 
+        if (c.getCreatedBy().getId() == authService.getUser().getId() || authService.isAdmin()) {
+            commentService.deleteCommentById(id);
+        }
 
         return "redirect:/discussion/" + discussionTitle;
     }

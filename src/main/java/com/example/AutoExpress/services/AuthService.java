@@ -32,6 +32,10 @@ public class AuthService {
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(role));
     }
 
+    public boolean isAdmin() {
+        return hasRole("ADMIN");
+    }
+
     public boolean isAuthenticated() {
         // Spring security sets default user with Role ANONYMOUS when no user is authenticated.
         // hasRole("ANONYMOUS")
