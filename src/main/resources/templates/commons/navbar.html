@@ -17,12 +17,18 @@
             <div>Upper 5</div>
 
         </div>
-        <div class="navbar-middle navbar-section">
-            <div>Middle 1</div>
-            <div>Middle 2</div>
-            <div>MIddle 3</div>
-            <div>MIddle 4</div>
-            <div>MIddle 5</div>
+        <div class="navbar-middle navbar-section" th:if="${@authService.isAuthenticated()}">
+
+            <form th:method="POST"
+                    th:action="@{/discussion/by_topic}">
+
+                <select name="name">
+                    <option value="Select Topic">Select Topic</option>
+                    <option th:each="topicEnum : ${T(com.example.AutoExpress.entities.TopicEnum).values()}"
+                            th:value="${topicEnum}" th:text="${topicEnum}"></option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
 
         </div>
 

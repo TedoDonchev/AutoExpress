@@ -43,6 +43,10 @@ public class DiscussionService {
         return discussionRepository.findByTitle(title);
     }
 
+    public List<Discussion> getAllByTopic(Topic topic) {
+        return discussionRepository.findAllByTopic(topic);
+    }
+
 
 
     public boolean createDiscussion(DiscussionDTO data) {

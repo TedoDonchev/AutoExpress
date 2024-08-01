@@ -45,5 +45,15 @@ public class CommentService {
         return commentRepository.findAllByDiscussionId(id);
     }
 
+    public void deleteCommentById(long id) {
+        Comment c = getById(id);
+
+        commentRepository.delete(c);
+    }
+
+    public Comment getById(long id) {
+        return commentRepository.findById(id).get();
+    }
+
 
 }

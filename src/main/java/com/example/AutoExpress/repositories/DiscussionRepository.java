@@ -1,6 +1,7 @@
 package com.example.AutoExpress.repositories;
 
 import com.example.AutoExpress.entities.Discussion;
+import com.example.AutoExpress.entities.Topic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,6 @@ public interface DiscussionRepository extends JpaRepository<Discussion, Long> {
 
 
     Discussion findByTitle(String title);
+
+    List<Discussion> findAllByTopic(Topic topic);
 }

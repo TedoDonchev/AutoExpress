@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commons/header::head}">
+
+</head>
+<body>
+<header th:replace="~{commons/header::div}"></header>
+
+<main>
+    <nav th:replace="~{commons/navbar::nav}"></nav>
+    <div class="content">
+
+        <div th:if="${@authService.isAuthenticated()}" class="content-inner">
+
+            <h1>Discussions about <span th:text="*{topic.name}"></span></h1>
+            <div class="discussion" th:each="d : ${discussions}">
+
+                <a th:href="@{/discussion/{title}(title=${d.title})}"><div th:text="*{d.title}">Title</div></a>
+                <a><div th:text="*{d.topic.name}">Topic</div></a>
+                <div class="additional_data">
+                    <a><div th:text="*{d.createdOn}">Created On</div></a>
+                    <a th:href="@{/users/{username}(username=${d.createdBy.username})}"><div th:text="*{d.createdBy.username}">Author</div></a>
+                </div>
+
+                <div></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+
+
+</html>

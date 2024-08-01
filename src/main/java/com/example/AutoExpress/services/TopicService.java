@@ -1,6 +1,7 @@
 package com.example.AutoExpress.services;
 
 import com.example.AutoExpress.entities.Topic;
+import com.example.AutoExpress.entities.TopicEnum;
 import com.example.AutoExpress.repositories.TopicRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,9 @@ public class TopicService {
 
     public List<Topic> getAllTopics() {
         return topicRepository.findAll();
+    }
+
+    public Topic getByName(String name){
+        return topicRepository.findByName(TopicEnum.valueOf(name));
     }
 }
