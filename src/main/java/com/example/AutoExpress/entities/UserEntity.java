@@ -29,11 +29,20 @@ public class UserEntity extends BaseEntity{
     @OneToMany(mappedBy = "createdBy")
     private List<Comment> comments;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private Set<Comment> likedComments;
+
     public UserEntity() {
         this.roles = new HashSet<>();
         this.createdDiscussions = new HashSet<>();
         this.comments = new ArrayList<>();
+        this.likedComments = new HashSet<>();
     }
+
+    public void addCommentToLiked(Comment c) {
+        this.likedComments.add(c);
+    }
+
 
     public void addRole(Role role) {
         this.roles.add(role);
@@ -86,6 +95,14 @@ public class UserEntity extends BaseEntity{
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Set<Comment> getLikedComments() {
+        return likedComments;
+    }
+
+    public void setLikedComments(Set<Comment> likedComments) {
+        this.likedComments = likedComments;
     }
 }
 

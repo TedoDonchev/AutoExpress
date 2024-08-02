@@ -19,16 +19,19 @@
         </div>
         <div class="navbar-middle navbar-section" th:if="${@authService.isAuthenticated()}">
 
-            <form th:method="POST"
-                    th:action="@{/discussion/by_topic}">
+            <div>
+                <form th:method="POST"
+                      th:action="@{/discussion/by_topic}">
+                    <p>Search by Topic</p>
+                    <select name="name">
+                        <option value="Select Topic">Select Topic</option>
+                        <option th:each="topicEnum : ${T(com.example.AutoExpress.entities.TopicEnum).values()}"
+                                th:value="${topicEnum}" th:text="${topicEnum}"></option>
+                    </select>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
 
-                <select name="name">
-                    <option value="Select Topic">Select Topic</option>
-                    <option th:each="topicEnum : ${T(com.example.AutoExpress.entities.TopicEnum).values()}"
-                            th:value="${topicEnum}" th:text="${topicEnum}"></option>
-                </select>
-                <button type="submit">Search</button>
-            </form>
 
         </div>
 

@@ -4,9 +4,11 @@ import com.example.AutoExpress.dto.CommentDTO;
 
 import com.example.AutoExpress.entities.Comment;
 import com.example.AutoExpress.entities.Discussion;
+import com.example.AutoExpress.entities.UserEntity;
 import com.example.AutoExpress.services.AuthService;
 import com.example.AutoExpress.services.CommentService;
 import com.example.AutoExpress.services.DiscussionService;
+import com.example.AutoExpress.services.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ public class CommentsController {
     private final CommentService commentService;
     private final DiscussionService discussionService;
     private final AuthService authService;
+
 
     public CommentsController(CommentService commentService, DiscussionService discussionService, AuthService authService) {
         this.commentService = commentService;
@@ -40,7 +43,7 @@ public class CommentsController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteComment(@PathVariable("id") long id, HttpServletResponse http) {
+    public String deleteComment(@PathVariable("id") long id) {
 
         Comment c = commentService.getById(id);
         String discussionTitle = c.getDiscussion().getTitle();
@@ -51,5 +54,19 @@ public class CommentsController {
 
         return "redirect:/discussion/" + discussionTitle;
     }
+
+
+    @PutMapping("/increase_reputation/{id}")
+    public String increaseReputation(@PathVariable("id") long id) {
+
+        Comment c = commentService.getById(id);
+
+        UserEntity user = authService.getUser();
+
+        commentService.increaseReputation(c, user);
+
+        return "redirect:/discussion/" + c.getDiscussion().getTitle();
+    }
+
 
 }

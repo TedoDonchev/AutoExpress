@@ -24,9 +24,20 @@
                     <h3>Comments</h3>
                     <div class="comment" th:each="c : ${comments}">
                         <div th:text="*{c.description}"></div>
-                        <div th:text="*{c.reputation}"></div>
                         <div th:text="*{c.createdOn}"></div>
                         <div th:text="*{c.createdBy.username}"></div>
+
+                        <div>
+                            <form
+                                th:method="PUT"
+                                th:action="@{/comments/increase_reputation/{id}(id = ${c.id})}">
+
+                                <div th:text="*{c.reputation}"></div>
+                                <button type="submit" >Upvote</button>
+                            </form>
+
+                        </div>
+
                         <div th:if="${c.createdBy.id == @authService.getUser().getId()} or ${@authService.isAdmin()}">
                             <form th:method="POST"
                                 th:action="@{/comments/delete/{id}(id=${c.Id})}">

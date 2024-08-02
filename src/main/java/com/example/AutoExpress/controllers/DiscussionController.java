@@ -77,10 +77,12 @@ public class DiscussionController {
     }
 
     @PostMapping("/by_topic")
-    public String viewByTopic(TopicDTO data) {
+    public String byTopic(TopicDTO data) {
 
         return "redirect:/discussion/by_topic/" + data.getName();
     }
+
+
 
 
 }
