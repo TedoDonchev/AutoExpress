@@ -11,8 +11,78 @@
 
     <div class="content">
         <div class="content-inner">
-            <h1 th:text="*{user.username}">Title</h1>
-            <div th:text="*{user.email}">Topic</div>
+            <div>
+                <div>
+                    <h1 th:text="*{user.username}">Title</h1>
+                    <div th:if="${@authService.isAdmin()} and ${!@userService.hasAdminRole(user)}">
+                        <form th:method="PUT"
+                            th:action="@{/admin/users/disable/{id}(id=${user.id})}"
+                        >
+                            <button type="submit">Disable User</button>
+                        </form>
+                    </div>
+                    <div th:if="${@authService.isAdmin() and ${!@userService.hasAdminRole(user)}">
+                        <form th:method="PUT"
+                              th:action="@{/admin/users/enable/{id}(id=${user.id})}"
+                        >
+                            <button type="submit">Enable User</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div>
+                    <p>Email:</p>
+                    <div th:text="*{user.email}">Email</div>
+                </div>
+            </div>
+
+            <div class="user-profile-lower">
+
+                <div class="user-profile-discussions">
+                    <h3>Created Discusions</h3>
+                    <div th:each="d : ${discussions}">
+
+                        <a th:href="@{/discussion/{title}(title=${d.title})}"><div th:text="*{d.title}">Title</div></a>
+                        <a><div th:text="*{d.topic.name}">Topic</div></a>
+                        <div class="additional_data">
+                            <a><div th:text="*{d.createdOn}">Created On</div></a>
+                            <a th:href="@{/users/{username}(username=${d.createdBy.username})}"><div th:text="*{d.createdBy.username}">Author</div></a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="user-profile-liked-comments">
+                    <h3>Liked Comments</h3>
+                    <div class="comment" th:each="c : ${comments}">
+                        <div th:text="*{c.description}"></div>
+                        <div th:text="*{c.createdOn}"></div>
+                        <a th:href="@{/users/{username}(username=${c.createdBy.username})}"><div th:text="*{c.createdBy.username}"></div></a>
+                        <div>
+                            <form
+                                    th:method="PUT"
+                                    th:action="@{/comments/increase_reputation/{id}(id = ${c.id})}">
+
+                                <div th:text="*{c.reputation}"></div>
+                                <button type="submit" >Upvote</button>
+                            </form>
+
+                        </div>
+
+                        <div th:if="${c.createdBy.id == @authService.getUser().getId()} or ${@authService.isAdmin()}">
+                            <form th:method="POST"
+                                  th:action="@{/comments/delete/{id}(id=${c.Id})}">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
 <!--            add discussion list-->
         </div>
     </div>

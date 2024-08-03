@@ -17,4 +17,6 @@ public interface DiscussionRepository extends JpaRepository<Discussion, Long> {
     Discussion findByTitle(String title);
 
     List<Discussion> findAllByTopic(Topic topic);
+
+    List<Discussion> findAllByCreatedById(long id);
 }

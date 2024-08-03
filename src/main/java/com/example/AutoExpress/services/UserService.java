@@ -3,6 +3,7 @@ package com.example.AutoExpress.services;
 import com.example.AutoExpress.dto.UserLoginDTO;
 import com.example.AutoExpress.dto.UserProfileDTO;
 import com.example.AutoExpress.dto.UserRegisterDTO;
+import com.example.AutoExpress.entities.Comment;
 import com.example.AutoExpress.entities.Role;
 import com.example.AutoExpress.entities.RoleEnum;
 import com.example.AutoExpress.entities.UserEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -63,6 +65,26 @@ public class UserService {
 
     public UserEntity getUserByUserName(String userName) {
         return userRepository.findByUsername(userName).get();
+    }
+
+    public void removeLikedComment(Comment comment, UserEntity user) {
+
+        user.removeCommentFromLiked(comment);
+
+    }
+
+    public UserEntity getById(long id){
+        return userRepository.findById(id).get();
+    }
+
+    public boolean hasAdminRole(UserEntity user) {
+        Set<Role> adminRole = user.getRoles().stream().filter(r -> r.getName().equals(RoleEnum.ADMIN)).collect(Collectors.toSet());
+
+        if (adminRole.isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 
 

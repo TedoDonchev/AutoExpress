@@ -47,7 +47,9 @@ public class DiscussionService {
         return discussionRepository.findAllByTopic(topic);
     }
 
-
+    public List<Discussion> getAllByUserId(long id) {
+        return discussionRepository.findAllByCreatedById(id);
+    }
 
     public boolean createDiscussion(DiscussionDTO data) {
 

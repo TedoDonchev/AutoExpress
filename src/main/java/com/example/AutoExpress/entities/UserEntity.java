@@ -32,15 +32,22 @@ public class UserEntity extends BaseEntity{
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Comment> likedComments;
 
+    private boolean isActive;
+
     public UserEntity() {
         this.roles = new HashSet<>();
         this.createdDiscussions = new HashSet<>();
         this.comments = new ArrayList<>();
         this.likedComments = new HashSet<>();
+        this.isActive = true;
     }
 
     public void addCommentToLiked(Comment c) {
         this.likedComments.add(c);
+    }
+
+    public void removeCommentFromLiked(Comment c) {
+        this.likedComments.remove(c);
     }
 
 
@@ -103,6 +110,14 @@ public class UserEntity extends BaseEntity{
 
     public void setLikedComments(Set<Comment> likedComments) {
         this.likedComments = likedComments;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
 

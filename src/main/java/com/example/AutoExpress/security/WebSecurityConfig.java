@@ -31,6 +31,7 @@ public class WebSecurityConfig {
                     authorizeRequest -> {
                         authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .requestMatchers("/admin/*").hasRole("ADMIN")
                                 .requestMatchers("/", "/register", "/login").permitAll()
                                 .anyRequest().authenticated();
 

@@ -22,14 +22,16 @@ public class CommentService {
     private final ModelMapper modelMapper;
     private final AuthService authService;
     private final UserRepository userRepository;
+    private final UserService userService;
 
 
-    public CommentService(CommentRepository commentRepository, ModelMapper modelMapper, AuthService authService, UserRepository userRepository) {
+    public CommentService(CommentRepository commentRepository, ModelMapper modelMapper, AuthService authService, UserRepository userRepository, UserService userService) {
         this.commentRepository = commentRepository;
         this.modelMapper = modelMapper;
         this.authService = authService;
 
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 
@@ -54,11 +56,22 @@ public class CommentService {
     public void deleteCommentById(long id) {
         Comment c = getById(id);
 
+        Set<UserEntity> users = c.getLikedBy();
+
+        for (UserEntity user : users) {
+            userService.removeLikedComment(c, user);
+            userRepository.save(user);
+        }
+
         commentRepository.delete(c);
     }
 
     public Comment getById(long id) {
         return commentRepository.findById(id).get();
+    }
+
+    public List<Comment> getAllByUserId(long id) {
+        return commentRepository.findAllByCreatedById(id);
     }
 
     public void increaseReputation(Comment comment, UserEntity user) {

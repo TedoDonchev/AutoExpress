@@ -25,7 +25,8 @@
                     <div class="comment" th:each="c : ${comments}">
                         <div th:text="*{c.description}"></div>
                         <div th:text="*{c.createdOn}"></div>
-                        <div th:text="*{c.createdBy.username}"></div>
+
+                        <a th:href="@{/users/{username}(username=${c.createdBy.username})}"><div th:text="*{c.createdBy.username}"></div></a>
 
                         <div>
                             <form
