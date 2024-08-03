@@ -21,7 +21,7 @@
                             <button type="submit">Disable User</button>
                         </form>
                     </div>
-                    <div th:if="${@authService.isAdmin() and ${!@userService.hasAdminRole(user)}">
+                    <div th:if="${@authService.isAdmin()} and ${!@userService.hasAdminRole(user)}">
                         <form th:method="PUT"
                               th:action="@{/admin/users/enable/{id}(id=${user.id})}"
                         >

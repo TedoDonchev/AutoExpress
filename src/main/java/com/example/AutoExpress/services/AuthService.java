@@ -46,4 +46,8 @@ public class AuthService {
     }
 
 
+    public String getUsername() {
+        return getUser().getUsername();
+    }
+
 }

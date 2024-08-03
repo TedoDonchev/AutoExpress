@@ -13,7 +13,57 @@
 
     margin: 0 auto;
     margin-top: 7%;
+    align-items: center;
 
 }
 
 
+
+.navbar-upper > div > a > div {
+
+    margin: 2% 10% 2% 10%;
+
+    max-width:70%;
+    background-color: #49b51f;
+    font-weight: bold;
+    border: 2px solid #d3d3d3;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.navbar-upper > div > a > div:hover {
+    border: 2px solid #49b51f;
+    background-color: #d3d3d3;
+}
+
+.navbar-middle > div {
+    margin: 2% 10% 2% 10%;
+}
+
+.navbar-middle > div > form > p {
+    margin: 0;
+    color: #d3d3d3;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.navbar-middle > div > form > select {
+    margin: 0;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+}
+
+.navbar-middle > div > form > button {
+    margin-top: 2%;
+    background-color: #49b51f;
+    font-weight: bold;
+
+    border: 2px solid #d3d3d3;
+    border-radius: 5px;
+}
+
+.navbar-middle > div > form > button:hover {
+    border: 2px solid #49b51f;
+    background-color: #d3d3d3;
+}

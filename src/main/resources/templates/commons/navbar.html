@@ -8,13 +8,25 @@
 <body>
     <nav class="navbar">
         <div class="navbar-upper navbar-section">
+
             <div th:if="${@authService.isAuthenticated()}">
-                <a th:href="@{/discussion/create}"><img th:src="@{images/plus.jpg}" width="10%" height="10%">Create Discussion</a>
+                <a th:href="@{/users/{username}(username=${@authService.getUsername()})}">
+                    <div>
+                        Profile
+                    </div>
+                </a>
             </div>
-            <div>Upper 2</div>
-            <div>Upper 3</div>
-            <div>Upper 4</div>
-            <div>Upper 5</div>
+
+
+            <div th:if="${@authService.isAuthenticated()}">
+                <a th:href="@{/discussion/create}">
+                    <div>
+                        <img th:src="@{images/plus.jpg}" width="10%" height="10%">
+                        Create Discussion
+                    </div>
+                </a>
+            </div>
+
 
         </div>
         <div class="navbar-middle navbar-section" th:if="${@authService.isAuthenticated()}">

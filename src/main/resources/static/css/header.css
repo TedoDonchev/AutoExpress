@@ -17,6 +17,10 @@
     grid-column-gap: 10%;
 }
 
+.topnav-right {
+    direction: rtl;
+}
+
 .topnav-right > div, .topnav-left > div {
     position: relative;
     text-align: center;
@@ -37,4 +41,19 @@
 
 .topnav-right > div > a {
 /*    border: 5px solid red;*/
+}
+
+.topnav-right > div > a > div {
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+
+    background-color: #d3d3d3;
+    border: 2px solid #626363;
+}
+
+.topnav-right > div > a > div:hover {
+
+    background-color: #626363;
+    border: 2px solid #d3d3d3;
 }
