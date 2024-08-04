@@ -12,7 +12,9 @@ import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -45,8 +47,18 @@ public class DiscussionController {
     }
 
     @PostMapping("/create")
-    public String doCreateDiscussion(@Valid DiscussionDTO data) {
+    public String doCreateDiscussion(@Valid DiscussionDTO data, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("discussionData", data);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.discussionData", bindingResult);
+
+            return "redirect:/discussion/create";
+        }
+
         discussionService.createDiscussion(data);
+
         return "redirect:/";
     }
 

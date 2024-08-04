@@ -1,6 +1,7 @@
 package com.example.AutoExpress.controllers;
 
 import com.example.AutoExpress.entities.Discussion;
+import com.example.AutoExpress.exceotions.UserAlreadyExistsException;
 import com.example.AutoExpress.services.AuthService;
 import com.example.AutoExpress.services.DiscussionService;
 import org.springframework.stereotype.Controller;

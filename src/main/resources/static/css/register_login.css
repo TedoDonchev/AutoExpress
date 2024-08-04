@@ -5,3 +5,8 @@
     text-align: center;
 
 }
+
+.is-invalid {
+    color: red;
+    font-size: 16px
+}

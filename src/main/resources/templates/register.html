@@ -23,33 +23,43 @@
                         <div>
                             <label>Username</label>
                         </div>
+                        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorclass="is-invalid"></div>
                         <input type="text" name="username" th:field="*{username}">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Email</label>
                         </div>
+                        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="is-invalid"></div>
                         <input type="text" name="email" th:field="*{email}">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Password</label>
                         </div>
+                        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="is-invalid"></div>
                         <input type="password" name="password" th:field="*{password}">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Confirm Password</label>
                         </div>
+                        <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" th:errorclass="is-invalid"></div>
                         <input type="password" name="confirmPassword">
                     </div>
                     <div class="login-input">
                         <button type="submit">Register</button>
                     </div>
                 </div>
+                <div class="content-inner">
+                    <div class="login-input">Already have an account?</div>
+                    <div class="login-input">Click here to <a th:href="@{/login}">Sign in</a></div>
+                </div>
 
             </div>
         </form>
+
+
 
 
     </main>

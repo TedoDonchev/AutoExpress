@@ -4,21 +4,18 @@ import jakarta.validation.constraints.*;
 
 
 public class UserRegisterDTO {
-
-    @Size(min = 3, max = 20)
-    @NotBlank
+    @NotBlank(message = "Please enter a username")
+    @Size(min = 3, message = "Username must be at least 3 characters long")
     private String username;
 
-    @Email
-    @NotBlank
+    @NotBlank(message = "Please enter an email")
+    @Email(message = "Enter a valid email address")
     private String email;
 
-    @Size(min = 3, max = 20)
-    @NotBlank
+    @NotBlank(message = "Please enter a password")
+    @Size(min = 3, message = "Password must be at least 3 characters long")
     private String password;
-
-    @Size(min = 3, max = 20)
-    @NotBlank
+    @NotBlank(message = "Re-enter your password")
     private String confirmPassword;
 
 

@@ -25,14 +25,16 @@
                         <div>
                             <label>Title</label>
                         </div>
+                        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:errorclass="is-invalid"></div>
                         <input type="text" name="title" th:field="*{title}">
                     </div>
                     <div class="discussion-input">
                         <div>
                             <label>Topic</label>
                         </div>
-                        <select name="topic">
-                            <option value="Select Topic">Select Topic</option>
+                        <div th:if="${#fields.hasErrors('topic')}" th:errors="*{topic}" th:errorclass="is-invalid"></div>
+                        <select name="topic" th:field="*{topic}">
+<!--                            <option value="Select Topic">Select Topic</option>-->
                             <option th:each="topicEnum : ${T(com.example.AutoExpress.entities.TopicEnum).values()}"
                                     th:value="${topicEnum}" th:text="${topicEnum}"></option>
                         </select>
@@ -42,6 +44,7 @@
                         <div>
                             <label>Description</label>
                         </div>
+                        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="is-invalid"></div>
                         <textarea type="text" name="description" th:field="*{description}"></textarea>
                     </div>
 
