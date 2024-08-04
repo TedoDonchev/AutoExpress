@@ -24,28 +24,28 @@
                             <label>Username</label>
                         </div>
                         <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorclass="is-invalid"></div>
-                        <input type="text" name="username" th:field="*{username}">
+                        <input type="text" name="username" th:field="*{username}" th:errorclass="invalid-input">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Email</label>
                         </div>
                         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="is-invalid"></div>
-                        <input type="text" name="email" th:field="*{email}">
+                        <input type="text" name="email" th:field="*{email}" th:errorclass="invalid-input">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Password</label>
                         </div>
                         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="is-invalid"></div>
-                        <input type="password" name="password" th:field="*{password}">
+                        <input type="password" name="password" th:field="*{password}" th:errorclass="invalid-input">
                     </div>
                     <div class="login-input">
                         <div>
                             <label>Confirm Password</label>
                         </div>
                         <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" th:errorclass="is-invalid"></div>
-                        <input type="password" name="confirmPassword">
+                        <input type="password" name="confirmPassword" th:errorclass="invalid-input">
                     </div>
                     <div class="login-input">
                         <button type="submit">Register</button>

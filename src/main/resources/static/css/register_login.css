@@ -10,3 +10,7 @@
     color: red;
     font-size: 16px
 }
+
+.invalid-input {
+    border: 2px solid red;
+}

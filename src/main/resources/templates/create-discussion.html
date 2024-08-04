@@ -26,7 +26,7 @@
                             <label>Title</label>
                         </div>
                         <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:errorclass="is-invalid"></div>
-                        <input type="text" name="title" th:field="*{title}">
+                        <input type="text" name="title" th:field="*{title}" th:errorclass="invalid-input">
                     </div>
                     <div class="discussion-input">
                         <div>
@@ -45,7 +45,7 @@
                             <label>Description</label>
                         </div>
                         <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="is-invalid"></div>
-                        <textarea type="text" name="description" th:field="*{description}"></textarea>
+                        <textarea type="text" name="description" th:field="*{description}" th:errorclass="invalid-input"></textarea>
                     </div>
 
 
