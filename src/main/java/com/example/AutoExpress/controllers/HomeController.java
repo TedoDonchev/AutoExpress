@@ -13,12 +13,9 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private final AuthService authService;
-
     private final DiscussionService discussionService;
 
-    public HomeController(AuthService authService, DiscussionService discussionService) {
-        this.authService = authService;
+    public HomeController(DiscussionService discussionService) {
         this.discussionService = discussionService;
     }
 
@@ -27,7 +24,7 @@ public class HomeController {
 
         List<Discussion> discussions = discussionService.getAllDiscussions();
 
-        //model.addAttribute("authService", authService);
+
         model.addAttribute("discussions", discussions);
 
 

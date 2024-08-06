@@ -23,7 +23,6 @@ import java.util.List;
 public class DiscussionController {
 
     private final TopicService topicService;
-
     private final CommentService commentService;
     private final DiscussionService discussionService;
     private final ModelMapper modelMapper;

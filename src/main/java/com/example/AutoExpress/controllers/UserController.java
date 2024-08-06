@@ -21,12 +21,11 @@ public class UserController {
 
     private final UserService userService;
     private final DiscussionService discussionService;
-    private final CommentService commentService;
 
-    public UserController(UserService userService, DiscussionService discussionService, CommentService commentService) {
+
+    public UserController(UserService userService, DiscussionService discussionService) {
         this.userService = userService;
         this.discussionService = discussionService;
-        this.commentService = commentService;
     }
 
     @GetMapping("/{username}")
