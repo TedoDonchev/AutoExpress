@@ -31,7 +31,7 @@
                         </div>
 
                         <div th:if="${@authService.isAdmin()}">
-                            <form th:method="PUT"
+                            <form th:method="GET"
                                   th:action="@{/admin/users/changeUsername/{id}(id=${user.id})}"
                             >
                                 <button type="submit" class="submit-btn">Change Username</button>

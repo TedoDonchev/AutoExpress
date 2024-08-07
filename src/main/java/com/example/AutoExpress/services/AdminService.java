@@ -1,5 +1,7 @@
 package com.example.AutoExpress.services;
 
+import com.example.AutoExpress.dto.UserNameDTO;
+import com.example.AutoExpress.dto.UserRegisterDTO;
 import com.example.AutoExpress.entities.Role;
 import com.example.AutoExpress.entities.RoleEnum;
 import com.example.AutoExpress.entities.UserEntity;
@@ -38,11 +40,13 @@ public class AdminService {
         }
     }
 
-    public UserEntity changeUsername(long id) {
+    public UserEntity changeUsername(long id, UserNameDTO data) {
         UserEntity user = userService.getById(id);
 
+        user.setUsername(data.getUsername());
 
-
+        userRepository.save(user);
+        return user;
     }
 
 

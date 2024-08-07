@@ -1,14 +1,18 @@
 package com.example.AutoExpress.controllers;
 
 
+import com.example.AutoExpress.dto.UserNameDTO;
+import com.example.AutoExpress.dto.UserRegisterDTO;
 import com.example.AutoExpress.entities.UserEntity;
 import com.example.AutoExpress.services.AdminService;
 import com.example.AutoExpress.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,11 +42,32 @@ public class AdminController {
         return "redirect:/users/" + user.getUsername();
     }
 
+    @GetMapping("/users/changeUsername/{id}")
+    public String viewChangeUsername(@PathVariable("id") long id, Model model) {
+        UserEntity user = userService.getById(id);
+
+        model.addAttribute("user", user);
+
+        return "change-username";
+    }
+
     @PutMapping("/users/changeUsername/{id}")
-    public String changeUserName(@PathVariable("id") long id) {
+    public String changeUserName(@PathVariable("id") long id, @Valid UserNameDTO data, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        UserEntity user = adminService.changeUsername(id);
+//        if (!userService.isUsernameUnique(data.getUsername())) {
+//            bindingResult.addError(new FieldError("data", "username", "User with this username already exists"));
+//        }
+//
+//
+//        if (bindingResult.hasErrors()) {
+//            redirectAttributes.addFlashAttribute("usernameData", data);
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.usernameData", bindingResult);
+//
+//            return "/users/changeUsername/" + id;
+//        }
 
+
+        UserEntity user = adminService.changeUsername(id, data);
 
 
         return "redirect:/users/" + user.getUsername();
