@@ -1,0 +1,45 @@
+.user-profile-lower {
+    display: grid;
+    grid-template-columns: 45% 45%;
+}
+
+.comment-profile, .discussion-user-profile {
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    background-color: #a9a9a9;
+    border-radius: 10px;
+    border: 1px solid #a9a9a9;
+}
+
+.comment-data-profile {
+    display: grid;
+    grid-template-columns: 33% 33% 33%
+}
+
+.comment-component, .discussion-component {
+    margin: 1%;
+}
+
+.comment-component > a > h3, .discussion-component > a > h3 {
+    color: black;
+}
+
+.comment-component > a > h3:hover, .discussion-component > a > h3:hover {
+    color: #49b51f;
+}
+
+.user-profile-discussions {
+    margin-right: 1%
+}
+
+.discussion-home-page-lower {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.admin-disable-enable-buttons > div {
+    margin: 1% 0;
+}
+
+
+

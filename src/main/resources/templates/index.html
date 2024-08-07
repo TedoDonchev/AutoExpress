@@ -14,18 +14,43 @@
         <nav th:replace="~{commons/navbar::nav}"></nav>
         <div class="content">
 
-            <div th:if="${@authService.isAuthenticated()}" class="content-inner">
-                    <h2>Most recent Discussions</h2>
-                    <div class="discussion" th:each="d : ${discussions}">
+            <div th:if="${!@authService.isAuthenticated()}" class="content-inner">
 
-                        <a th:href="@{/discussion/{title}(title=${d.title})}"><div th:text="*{d.title}">Title</div></a>
-                        <a><div th:text="*{d.topic.name}">Topic</div></a>
-                        <div class="additional_data">
-                            <a><div th:text="*{d.createdOn}">Created On</div></a>
-                            <a th:href="@{/users/{username}(username=${d.createdBy.username})}"><div th:text="*{d.createdBy.username}">Author</div></a>
+                <div class="index-logged-out">To be able to experience the full functionality of the forum please <br>
+                    <a th:href="@{/register}"><span >Register</span></a> <br>
+                    or <br>
+                    <a th:href="@{/login}"><span >Login</span></a> <br>
+                    if you already have an account</div>
+
+            </div>
+
+            <div th:if="${@authService.isAuthenticated()}" class="content-inner">
+                <h2>Most recent Discussions</h2>
+                <div class="discussion-user-profile discussion-home-page" th:each="d : ${discussions}">
+
+                    <div class="discussion-component">
+                        <a th:href="@{/discussion/{title}(title=${d.title})}"><h3 th:text="*{d.title}">Title</h3></a>
+                    </div>
+
+                    <div class="discussion-component discussion-home-page-lower">
+                        <div>
+                            <span>Topic: </span>
+                            <a><span th:text="*{d.topic.name}">Topic</span></a>
+                        </div>
+                        <div>
+                            <span>Created On: </span>
+                            <a><span th:text="*{d.createdOn}">Created On</span></a>
                         </div>
 
+                        <div>
+                            <span>Created By:</span>
+                            <a th:href="@{/users/{username}(username=${d.createdBy.username})}"><span th:text="*{d.createdBy.username}">Author</span></a>
+                        </div>
                     </div>
+
+
+                </div>
+
 
             </div>
 

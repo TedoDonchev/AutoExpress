@@ -58,7 +58,7 @@
     margin-top: 2%;
     background-color: #49b51f;
     font-weight: bold;
-
+    align-self: center;
     border: 2px solid #d3d3d3;
     border-radius: 5px;
 }
@@ -67,3 +67,20 @@
     border: 2px solid #49b51f;
     background-color: #d3d3d3;
 }
+
+
+.all_topics_div {
+    background-color: #49b51f;
+    border: 2px solid #d3d3d3;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.all_topics_div:hover {
+    background-color: #d3d3d3;
+    border: 2px solid #49b51f;
+}
+
+

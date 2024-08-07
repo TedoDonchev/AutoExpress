@@ -57,3 +57,7 @@
     background-color: #626363;
     border: 2px solid #d3d3d3;
 }
+
+.topnav-left > div > a {
+    color: black;
+}

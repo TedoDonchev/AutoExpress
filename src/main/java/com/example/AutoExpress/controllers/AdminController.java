@@ -38,4 +38,14 @@ public class AdminController {
         return "redirect:/users/" + user.getUsername();
     }
 
+    @PutMapping("/users/changeUsername/{id}")
+    public String changeUserName(@PathVariable("id") long id) {
+
+        UserEntity user = adminService.changeUsername(id);
+
+
+
+        return "redirect:/users/" + user.getUsername();
+    }
+
 }

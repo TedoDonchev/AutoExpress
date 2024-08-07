@@ -31,9 +31,39 @@ main {
 
 .content-inner {
     align-items: center;
-
+    min-height: 100%;
 }
 
 a {
     text-decoration: none;
+}
+
+.index-logged-out {
+    background-color: #626363;
+    border: 2px solid #626363;
+    border-radius: 5px;
+    color: #d3d3d3;
+    font-weight: bold;
+    padding: 5%;
+    margin: 15% 20%;
+    align-items: center;
+    text-align: center;
+}
+
+.index-logged-out > a > span {
+    color: #49b51f;
+}
+
+.submit-btn {
+    color: black;
+    font-weight: bold;
+    background-color: #49b51f;
+    border: 2px solid #49b51f;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: #626363;
+    border: 2px solid #626363;
+    color: #d3d3d3;
 }

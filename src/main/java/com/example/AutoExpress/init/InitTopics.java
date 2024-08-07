@@ -10,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Order(1)
 public class InitTopics implements CommandLineRunner {
@@ -26,11 +28,14 @@ public class InitTopics implements CommandLineRunner {
 
         long count = topicRepository.count();
 
-        if (count == 0) {
+        if (count < TopicEnum.values().length) {
             for (TopicEnum topicEnum : TopicEnum.values()) {
-                Topic topic = new Topic(topicEnum);
 
-                topicRepository.save(topic);
+                if (topicRepository.findByName(topicEnum) == null) {
+                    Topic topic = new Topic(topicEnum);
+                    topicRepository.save(topic);
+                }
+
             }
         }
 

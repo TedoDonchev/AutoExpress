@@ -38,6 +38,13 @@ public class AdminService {
         }
     }
 
+    public UserEntity changeUsername(long id) {
+        UserEntity user = userService.getById(id);
+
+
+
+    }
+
 
 
 

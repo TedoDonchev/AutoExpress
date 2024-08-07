@@ -5,14 +5,41 @@
 .comment {
     margin-top: 0.5%;
     margin-bottom: 0.5%;
-    border: 1px solid #49b51f;
+    background-color: #a9a9a9;
+    padding: 5px;
+/*    border: 1px solid #49b51f;*/
 }
 
-textarea{
-    min-width: 100%;
+textarea {
+    min-width: 80%;
+    max-width: 80%;
+}
+
+.comment-btn {
+    min-width: 20%;
+    max-width: 20%;
+    min-height: 100%
 }
 
 .add-comment {
     display: grid;
     grid-template-rows: 33% 33% 33%;
 }
+
+.comment-data {
+    display: grid;
+    grid-template-columns: 55% 15% 15% 15%;
+}
+
+.discussion-data {
+    display: grid;
+    grid-template-columns: 15% 15% 15%
+}
+
+.disc-descr, .comment {
+    background-color: #a9a9a9;
+    border: 1px solid #a9a9a9;
+    border-radius: 10px;
+}
+
+

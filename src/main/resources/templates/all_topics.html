@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commons/header::head}">
+    <!--    <meta charset="UTF-8">-->
+    <!--    <title>Title</title>-->
+    <!--    <link rel="stylesheet" th:href="@{css/style.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{css/header.css}">-->
+</head>
+<body>
+<header th:replace="~{commons/header::div}"></header>
+
+<main>
+    <nav th:replace="~{commons/navbar::nav}"></nav>
+    <div class="content">
+
+        <div th:if="${@authService.isAuthenticated()}" class="content-inner">
+            <h2>All Topics</h2>
+            <div class="topics-div">
+                <div class="topic" th:each="t : ${topics}">
+
+                    <a th:href="@{/discussion/by_topic/{topicName}(topicName=${t.name})}"><div class="inner-topic" th:text="*{t.name}"></div></a>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+
+
+</html>

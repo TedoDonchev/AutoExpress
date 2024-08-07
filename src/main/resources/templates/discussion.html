@@ -13,38 +13,80 @@
             <div class="content-inner">
 
                 <div class="discussion-original">
-                    <h1 th:text="*{discussion.title}">Title</h1>
-                    <div th:text="*{discussion.topic.name}">Topic</div>
-                    <div th:text="*{discussion.description}">Descr</div>
-                    <div th:text="*{discussion.CreatedOn}">Date</div>
-                    <div th:text="*{discussion.createdBy.username}">Author</div>
+                    <div>
+                        <h1 th:text="*{discussion.title}">Title</h1>
+                    </div>
+
+                    <div class="disc-descr">
+                        <div th:text="*{discussion.description}">Description</div>
+                    </div>
+
+                    <div class="discussion-data">
+                        <div>
+                            <span>Topic: </span>
+                            <span th:text="*{discussion.topic.name}">Topic</span>
+                        </div>
+
+                        <div>
+                            <span>Created By: </span>
+                            <span th:text="*{discussion.createdBy.username}">Author</span>
+                        </div>
+
+                        <div>
+                            <span>Created On: </span>
+                            <span th:text="*{discussion.CreatedOn}">Date</span>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
                 <div class="discussion-comments">
                     <h3>Comments</h3>
                     <div class="comment" th:each="c : ${comments}">
-                        <div th:text="*{c.description}"></div>
-                        <div th:text="*{c.createdOn}"></div>
 
-                        <a th:href="@{/users/{username}(username=${c.createdBy.username})}"><div th:text="*{c.createdBy.username}"></div></a>
-
-                        <div>
-                            <form
-                                th:method="PUT"
-                                th:action="@{/comments/increase_reputation/{id}(id = ${c.id})}">
-
-                                <div th:text="*{c.reputation}"></div>
-                                <button type="submit" >Upvote</button>
-                            </form>
-
+                        <div class="comment-description">
+                            <p th:text="*{c.description}"></p>
                         </div>
 
-                        <div th:if="${c.createdBy.id == @authService.getUser().getId()} or ${@authService.isAdmin()}">
-                            <form th:method="POST"
-                                th:action="@{/comments/delete/{id}(id=${c.Id})}">
-                                <button type="submit">Delete</button>
-                            </form>
+                        <div class="comment-data">
+
+                            <div>
+                                <div>
+                                    <span>Posted On:</span>
+                                    <span th:text="*{c.createdOn}"></span>
+                                </div>
+
+                                <div>
+                                    <span>Posted By: </span>
+                                    <a th:href="@{/users/{username}(username=${c.createdBy.username})}"><span th:text="*{c.createdBy.username}"></span></a>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span>Reputation: </span>
+                                <span th:text="*{c.reputation}"></span>
+                            </div>
+
+                            <div>
+                                <form
+                                        th:method="PUT"
+                                        th:action="@{/comments/increase_reputation/{id}(id = ${c.id})}">
+
+                                    <button type="submit" class="submit-btn">Upvote</button>
+                                </form>
+
+                            </div>
+
+                            <div th:if="${c.createdBy.id == @authService.getUser().getId()} or ${@authService.isAdmin()}">
+                                <form th:method="POST"
+                                      th:action="@{/comments/delete/{id}(id=${c.Id})}">
+                                    <button type="submit" class="submit-btn">Delete</button>
+                                </form>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -54,7 +96,7 @@
                     <div class="add-comment">
                         <h3>Add Comment</h3>
                         <textarea type="text" name="description"></textarea>
-                        <button type="submit">Comment</button>
+                        <button type="submit" class="comment-btn submit-btn" >Comment</button>
                     </div>
                 </form>
 

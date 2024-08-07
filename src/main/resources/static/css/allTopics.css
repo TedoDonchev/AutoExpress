@@ -1,0 +1,31 @@
+.topics-div {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+}
+
+.topic {
+    margin: 5% 5%;
+    border: 2px solid #49b51f;
+    border-radius: 5px;
+    min-height: 25%;
+}
+
+.topic:hover {
+    border: 2px solid #626363;
+}
+
+.inner-topic {
+    background-color: #626363;
+    color: #d3d3d3;
+    min-width: 100%;
+    min-height: 100%;
+
+    text-align: center;
+}
+
+.inner-topic:hover {
+    background-color: #49b51f;
+    color: black;
+
+}
+

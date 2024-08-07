@@ -14,17 +14,31 @@
         <div th:if="${@authService.isAuthenticated()}" class="content-inner">
 
             <h1>Discussions about <span th:text="*{topic.name}"></span></h1>
-            <div class="discussion" th:each="d : ${discussions}">
+            <div class="discussion-user-profile discussion-home-page" th:each="d : ${discussions}">
 
-                <a th:href="@{/discussion/{title}(title=${d.title})}"><div th:text="*{d.title}">Title</div></a>
-                <a><div th:text="*{d.topic.name}">Topic</div></a>
-                <div class="additional_data">
-                    <a><div th:text="*{d.createdOn}">Created On</div></a>
-                    <a th:href="@{/users/{username}(username=${d.createdBy.username})}"><div th:text="*{d.createdBy.username}">Author</div></a>
+                <div class="discussion-component">
+                    <a th:href="@{/discussion/{title}(title=${d.title})}"><h3 th:text="*{d.title}">Title</h3></a>
                 </div>
 
-                <div></div>
+                <div class="discussion-component discussion-home-page-lower">
+                    <div>
+                        <span>Topic: </span>
+                        <a><span th:text="*{d.topic.name}">Topic</span></a>
+                    </div>
+                    <div>
+                        <span>Created On: </span>
+                        <a><span th:text="*{d.createdOn}">Created On</span></a>
+                    </div>
+
+                    <div>
+                        <span>Created By:</span>
+                        <a th:href="@{/users/{username}(username=${d.createdBy.username})}"><span th:text="*{d.createdBy.username}">Author</span></a>
+                    </div>
+                </div>
+
+
             </div>
+
 
         </div>
 
