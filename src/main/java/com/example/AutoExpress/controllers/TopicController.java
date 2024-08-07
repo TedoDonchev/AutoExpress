@@ -23,7 +23,6 @@ public class TopicController {
     public String getAllTopics(Model model) {
         List<TopicDTO> topicNames = topicService.getAllTopicNames();
 
-        //TO DO: Display topics on new page
         model.addAttribute("topics", topicNames);
 
         return "all_topics";

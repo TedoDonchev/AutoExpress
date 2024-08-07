@@ -32,7 +32,7 @@ public class WebSecurityConfig {
                         authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/admin/*").hasRole("ADMIN")
-                                .requestMatchers("/", "/register", "/login", "/api/topics/all", "allTopics").permitAll()
+                                .requestMatchers("/", "/register", "/login", "/about", "/api/topics/all").permitAll()
                                 .anyRequest().authenticated();
 
                     }
